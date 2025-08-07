@@ -47,16 +47,16 @@ export function TaskList() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-foreground">My Tasks</h2>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0 justify-between">
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground">My Tasks</h2>
 
-                <div className="flex items-center space-x-4">
+                <div className="flex max-sm:justify-between items-center gap-3 sm:gap-4">
                     <div className="flex rounded-md border border-border">
                         <Button
                             variant={viewMode === 'daily' ? 'default' : 'ghost'}
                             size="sm"
                             onClick={() => setViewMode('daily')}
-                            className={`rounded-r-none ${viewMode === 'daily' ? 'dashboard-card-blue' : 'border-border hover:bg-muted'}`}
+                            className={`rounded-r-none text-xs sm:text-sm ${viewMode === 'daily' ? 'dashboard-card-blue' : 'border-border hover:bg-muted'}`}
                         >
                             Daily
                         </Button>
@@ -64,21 +64,21 @@ export function TaskList() {
                             variant={viewMode === 'weekly' ? 'default' : 'ghost'}
                             size="sm"
                             onClick={() => setViewMode('weekly')}
-                            className={`rounded-l-none ${viewMode === 'weekly' ? 'dashboard-card-blue' : 'border-border hover:bg-muted'}`}
+                            className={`rounded-l-none text-xs sm:text-sm ${viewMode === 'weekly' ? 'dashboard-card-blue' : 'border-border hover:bg-muted'}`}
                         >
                             Weekly
                         </Button>
                     </div>
 
                     <div className="flex items-center space-x-2">
-                        <div className="p-1.5 rounded-lg dashboard-card-purple">
-                            <Calendar className="h-4 w-4 text-white" />
+                        <div className="p-1 sm:p-1.5 rounded-lg dashboard-card-purple">
+                            <Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
                         </div>
                         <input
                             type="date"
                             value={selectedDate}
                             onChange={(e) => setSelectedDate(e.target.value)}
-                            className="text-sm border border-border bg-input text-foreground rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-ring"
+                            className="text-sm sm:text-sm border border-border bg-input text-foreground rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-ring"
                         />
                     </div>
                 </div>
@@ -86,8 +86,8 @@ export function TaskList() {
 
             {viewMode === 'weekly' && (
                 <div className="dashboard-card-cyan text-white border border-border rounded-md p-3">
-                    <p className="text-sm">
-                        <Filter className="h-4 w-4 inline mr-1" />
+                    <p className="text-xs sm:text-sm">
+                        <Filter className="h-3 w-3 sm:h-4 sm:w-4 inline mr-1" />
                         Showing tasks for week of {formatDate(getWeekStart(selectedDate))} - {formatDate(getWeekEnd(selectedDate))}
                     </p>
                 </div>

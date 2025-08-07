@@ -110,8 +110,8 @@ export function LoginForm() {
                         <div className="mt-6 text-xs text-muted-foreground bg-muted p-4 rounded-lg">
                             <p className="font-medium text-foreground">Demo Accounts:</p>
                             <p>Manager: manager@company.com</p>
-                            <p>Associate: associate1@company.com</p>
-                            <p>Associate: associate2@company.com</p>
+                            <p>Associate: associate1@company.com (Alice)</p>
+                            <p>Associate: associate2@company.com (Bob)</p>
                             <p className="mt-2 italic">Use any password</p>
                         </div>
                     </CardContent>

@@ -155,19 +155,21 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
 
     if (isSubmitted) {
         return (
-            <div className="dashboard-card-green text-white rounded-md p-4">
+            <div className="bg-green-500/10 border border-green-400/20 rounded-md p-4">
                 <div className="flex items-center space-x-2">
-                    <Check className="h-5 w-5 text-white" />
+                    <div className="p-1.5 rounded-full bg-green-400/20">
+                        <Check className="h-4 w-4 text-green-400" />
+                    </div>
                     <div>
-                        <p className="text-sm font-medium text-white">
+                        <p className="text-sm font-medium text-green-300">
                             Timesheet Submitted ({existingEntry?.actualHours}h)
                         </p>
                         {existingEntry?.notes && (
-                            <p className="text-sm text-white/80 mt-1">
+                            <p className="text-sm text-green-400/80 mt-1">
                                 Notes: {existingEntry.notes}
                             </p>
                         )}
-                        <p className="text-xs text-white/70 mt-1">
+                        <p className="text-xs text-green-500/70 mt-1">
                             Submitted on: {existingEntry?.submittedAt ?
                                 new Date(existingEntry.submittedAt).toLocaleString() : 'N/A'}
                         </p>
@@ -214,7 +216,7 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
                     disabled={createMutation.isPending || updateMutation.isPending}
                     className="flex items-center space-x-1 dashboard-card-purple hover:opacity-90 transition-opacity"
                 >
-                    <Clock className="h-3 w-3" />
+                    <Clock className="h-3 w-3 text-white" />
                     <span>
                         {existingEntry ? 'Update' : 'Log'} Hours
                     </span>
