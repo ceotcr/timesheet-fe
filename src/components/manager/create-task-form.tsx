@@ -46,13 +46,10 @@ export function CreateTaskForm() {
         mutationFn: (data: CreateTaskFormData) =>
             tasksAPI.createTask({ ...data, managerId: user!.id }),
         onMutate: async (newTaskData) => {
-            // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
             await queryClient.cancelQueries({ queryKey: ['tasks'] });
 
-            // Snapshot the previous value
             const previousTasks = queryClient.getQueryData(['tasks']);
 
-            // Optimistically update to the new value
             const optimisticTask = {
                 id: `temp-${Date.now()}`,
                 ...newTaskData,
@@ -64,12 +61,10 @@ export function CreateTaskForm() {
                 old ? [...old, optimisticTask] : [optimisticTask]
             );
 
-            // Return a context object with the snapshotted value
             return { previousTasks };
         },
         onSuccess: (newTask) => {
             console.log('Task created successfully:', newTask);
-            // Invalidate all task-related queries to ensure immediate updates
             queryClient.invalidateQueries({ queryKey: ['tasks'] });
             queryClient.invalidateQueries({ queryKey: ['assigned-tasks'] });
             queryClient.invalidateQueries({ queryKey: ['timesheet-entries'] });
@@ -78,13 +73,11 @@ export function CreateTaskForm() {
         },
         onError: (error, newTaskData, context) => {
             console.error('Failed to create task:', error);
-            // If the mutation fails, use the context returned from onMutate to roll back
             if (context?.previousTasks) {
                 queryClient.setQueryData(['tasks'], context.previousTasks);
             }
         },
         onSettled: () => {
-            // Always refetch after error or success
             queryClient.invalidateQueries({ queryKey: ['tasks'] });
         },
     }); const onSubmit = (data: CreateTaskFormData) => {

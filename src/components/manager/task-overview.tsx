@@ -24,11 +24,6 @@ export function TaskOverview() {
         queryFn: usersAPI.getUsers,
     });
 
-    // Debug logging
-    console.log('TaskOverview - tasks:', tasks);
-    console.log('TaskOverview - isLoading:', isLoading);
-    console.log('TaskOverview - error:', error);
-
     const handleRefresh = () => {
         queryClient.invalidateQueries({ queryKey: ['tasks'] });
         queryClient.invalidateQueries({ queryKey: ['timesheet-entries'] });

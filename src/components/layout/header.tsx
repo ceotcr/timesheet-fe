@@ -36,7 +36,7 @@ export function Header() {
                         variant="outline"
                         size="sm"
                         onClick={logout}
-                        className="flex items-center sm:space-x-1 sm:space-x-2 border-border hover:bg-muted"
+                        className="flex items-center sm:space-x-2 border-border hover:bg-muted"
                     >
                         <LogOut className="h-3 w-3 sm:h-4 sm:w-4" />
                         <span className="hidden sm:inline">Logout</span>

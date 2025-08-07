@@ -28,7 +28,6 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
         enabled: !!user,
     });
 
-    // Find existing entry for this task and current date
     const existingEntry = timesheetEntries.find(
         entry => entry.taskId === task.id && entry.userId === user!.id
     ); const {
@@ -45,7 +44,6 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
         },
     });
 
-    // Set form values when existing entry changes
     useEffect(() => {
         if (existingEntry) {
             setValue('actualHours', existingEntry.actualHours);
@@ -79,7 +77,7 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
         mutationFn: () => timesheetAPI.submitTimesheet(existingEntry!.id),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['timesheet-entries', user?.id] });
-            queryClient.invalidateQueries({ queryKey: ['timesheet-entries'] }); // For manager view
+            queryClient.invalidateQueries({ queryKey: ['timesheet-entries'] });
         },
     });
 
@@ -101,7 +99,6 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
     const isTaskToday = task.date === new Date().toISOString().split('T')[0];
     const isTaskOverdue = task.date < new Date().toISOString().split('T')[0];
 
-    // Don't show form for future tasks or overdue tasks unless there's already an entry
     if (!isTaskToday && !existingEntry && !isTaskOverdue) {
         return (
             <div className="bg-muted rounded-md p-4">
