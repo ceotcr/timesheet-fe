@@ -22,7 +22,7 @@ const mockUsers: User[] = [
     },
 ];
 
-let mockTasks: Task[] = [
+const mockTasks: Task[] = [
     {
         id: '1',
         description: 'Fix Bug A in authentication module',
@@ -52,7 +52,7 @@ let mockTasks: Task[] = [
     },
 ];
 
-let mockTimesheetEntries: TimesheetEntry[] = [
+const mockTimesheetEntries: TimesheetEntry[] = [
     {
         id: '1',
         taskId: '1',

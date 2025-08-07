@@ -26,7 +26,7 @@ export interface TimesheetEntry {
     submittedAt?: string;
 }
 
-export interface AuthUser extends User { }
+export type AuthUser = User;
 
 export interface LoginCredentials {
     email: string;

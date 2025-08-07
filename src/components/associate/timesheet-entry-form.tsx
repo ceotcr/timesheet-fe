@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { timesheetEntrySchema, type TimesheetEntryFormData } from '@/lib/validations';
 import { timesheetAPI } from '@/lib/api';
 import { useAuthStore } from '@/store/auth';
-import { Task, TimesheetEntry } from '@/types';
+import { Task } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -98,7 +98,6 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
     };
 
     const isSubmitted = existingEntry?.submitted || false;
-    const canEdit = !isSubmitted && (isEditing || !existingEntry);
     const isTaskToday = task.date === new Date().toISOString().split('T')[0];
     const isTaskOverdue = task.date < new Date().toISOString().split('T')[0];
 

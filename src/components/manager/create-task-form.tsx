@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { createTaskSchema, type CreateTaskFormData } from '@/lib/validations';
 import { tasksAPI, usersAPI } from '@/lib/api';
 import { useAuthStore } from '@/store/auth';
-import { Task } from '@/types';
+import { type Task } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -60,7 +60,7 @@ export function CreateTaskForm() {
                 createdAt: new Date().toISOString(),
             };
 
-            queryClient.setQueryData(['tasks'], (old: any) =>
+            queryClient.setQueryData(['tasks'], (old: Task[] | undefined) =>
                 old ? [...old, optimisticTask] : [optimisticTask]
             );
 
