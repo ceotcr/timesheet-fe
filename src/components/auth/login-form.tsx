@@ -41,74 +41,74 @@ export function LoginForm() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
                 <div className="text-center">
-                    <div className="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-blue-100">
-                        <Clock className="h-6 w-6 text-blue-600" />
+                    <div className="mx-auto h-16 w-16 flex items-center justify-center rounded-xl dashboard-card-blue">
+                        <Clock className="h-8 w-8 text-white" />
                     </div>
-                    <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+                    <h2 className="mt-6 text-3xl font-extrabold text-foreground">
                         Timesheet Manager
                     </h2>
-                    <p className="mt-2 text-sm text-gray-600">
+                    <p className="mt-2 text-sm text-muted-foreground">
                         Sign in to your account
                     </p>
                 </div>
 
-                <Card>
+                <Card className="bg-card border-border glass-effect">
                     <CardHeader>
-                        <CardTitle>Login</CardTitle>
-                        <CardDescription>
+                        <CardTitle className="text-foreground">Login</CardTitle>
+                        <CardDescription className="text-muted-foreground">
                             Enter your credentials to access your timesheet
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                             <div>
-                                <Label htmlFor="email">Email</Label>
+                                <Label htmlFor="email" className="text-foreground">Email</Label>
                                 <Input
                                     id="email"
                                     type="email"
                                     {...register('email')}
-                                    className="mt-1"
+                                    className="mt-1 bg-input border-border text-foreground"
                                     placeholder="Enter your email"
                                 />
                                 {errors.email && (
-                                    <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                                    <p className="mt-1 text-sm text-destructive">{errors.email.message}</p>
                                 )}
                             </div>
 
                             <div>
-                                <Label htmlFor="password">Password</Label>
+                                <Label htmlFor="password" className="text-foreground">Password</Label>
                                 <Input
                                     id="password"
                                     type="password"
                                     {...register('password')}
-                                    className="mt-1"
+                                    className="mt-1 bg-input border-border text-foreground"
                                     placeholder="Enter your password"
                                 />
                                 {errors.password && (
-                                    <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+                                    <p className="mt-1 text-sm text-destructive">{errors.password.message}</p>
                                 )}
                             </div>
 
                             {error && (
-                                <div className="text-sm text-red-600 bg-red-50 p-3 rounded-md">
+                                <div className="text-sm text-white bg-destructive p-3 rounded-md">
                                     {error}
                                 </div>
                             )}
 
                             <Button
                                 type="submit"
-                                className="w-full"
+                                className="w-full dashboard-card-blue hover:opacity-90 transition-opacity"
                                 disabled={mutation.isPending}
                             >
                                 {mutation.isPending ? 'Signing in...' : 'Sign in'}
                             </Button>
                         </form>
 
-                        <div className="mt-6 text-xs text-gray-500">
-                            <p className="font-medium">Demo Accounts:</p>
+                        <div className="mt-6 text-xs text-muted-foreground bg-muted p-4 rounded-lg">
+                            <p className="font-medium text-foreground">Demo Accounts:</p>
                             <p>Manager: manager@company.com</p>
                             <p>Associate: associate1@company.com</p>
                             <p>Associate: associate2@company.com</p>

@@ -7,8 +7,11 @@ import { TimesheetReview } from '@/components/manager/timesheet-review';
 export function ManagerDashboard() {
     return (
         <div className="space-y-8">
-            <div className="flex items-center justify-between">
-                <h1 className="text-3xl font-bold text-gray-900">Manager Dashboard</h1>
+            <div className="flex items-start gap-2 justify-between">
+                <div>
+                    <h1 className="text-3xl font-bold text-foreground">Manager Dashboard</h1>
+                    <p className="text-muted-foreground mt-1">Monitor tasks and team performance</p>
+                </div>
                 <CreateTaskForm />
             </div>
 

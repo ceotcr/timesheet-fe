@@ -105,8 +105,8 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
     // Don't show form for future tasks or overdue tasks unless there's already an entry
     if (!isTaskToday && !existingEntry && !isTaskOverdue) {
         return (
-            <div className="bg-gray-50 rounded-md p-4">
-                <p className="text-sm text-gray-600">
+            <div className="bg-muted rounded-md p-4">
+                <p className="text-sm text-muted-foreground">
                     Task scheduled for {new Date(task.date).toLocaleDateString()}.
                     You can log hours on the task date.
                 </p>
@@ -115,14 +115,14 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
     } if (existingEntry && !isEditing && !isSubmitted) {
         return (
             <div className="space-y-4">
-                <div className="bg-gray-50 rounded-md p-4">
+                <div className="bg-muted rounded-md p-4">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-sm font-medium text-gray-900">
+                            <p className="text-sm font-medium text-foreground">
                                 Actual Hours: {existingEntry.actualHours}h
                             </p>
                             {existingEntry.notes && (
-                                <p className="text-sm text-gray-600 mt-1">
+                                <p className="text-sm text-muted-foreground mt-1">
                                     Notes: {existingEntry.notes}
                                 </p>
                             )}
@@ -132,7 +132,7 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
                                 size="sm"
                                 variant="outline"
                                 onClick={() => setIsEditing(true)}
-                                className="flex items-center space-x-1"
+                                className="flex items-center space-x-1 border-border hover:bg-muted"
                             >
                                 <Edit2 className="h-3 w-3" />
                                 <span>Edit</span>
@@ -141,7 +141,7 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
                                 size="sm"
                                 onClick={handleSubmitTimesheet}
                                 disabled={submitMutation.isPending}
-                                className="flex items-center space-x-1"
+                                className="flex items-center space-x-1 dashboard-card-blue hover:opacity-90 transition-opacity"
                             >
                                 <Send className="h-3 w-3" />
                                 <span>Submit</span>
@@ -155,19 +155,19 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
 
     if (isSubmitted) {
         return (
-            <div className="bg-green-50 border border-green-200 rounded-md p-4">
+            <div className="dashboard-card-green text-white rounded-md p-4">
                 <div className="flex items-center space-x-2">
-                    <Check className="h-5 w-5 text-green-600" />
+                    <Check className="h-5 w-5 text-white" />
                     <div>
-                        <p className="text-sm font-medium text-green-900">
+                        <p className="text-sm font-medium text-white">
                             Timesheet Submitted ({existingEntry?.actualHours}h)
                         </p>
                         {existingEntry?.notes && (
-                            <p className="text-sm text-green-700 mt-1">
+                            <p className="text-sm text-white/80 mt-1">
                                 Notes: {existingEntry.notes}
                             </p>
                         )}
-                        <p className="text-xs text-green-600 mt-1">
+                        <p className="text-xs text-white/70 mt-1">
                             Submitted on: {existingEntry?.submittedAt ?
                                 new Date(existingEntry.submittedAt).toLocaleString() : 'N/A'}
                         </p>
@@ -181,27 +181,27 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
                 <div>
-                    <Label htmlFor={`hours-${task.id}`}>Actual Hours</Label>
+                    <Label htmlFor={`hours-${task.id}`} className="text-foreground">Actual Hours</Label>
                     <Input
                         id={`hours-${task.id}`}
                         type="number"
                         step="0.1"
                         min="0.1"
                         {...register('actualHours', { valueAsNumber: true })}
-                        className="mt-1"
+                        className="mt-1 bg-input border-border text-foreground"
                         placeholder="0.0"
                     />
                     {errors.actualHours && (
-                        <p className="mt-1 text-sm text-red-600">{errors.actualHours.message}</p>
+                        <p className="mt-1 text-sm text-destructive">{errors.actualHours.message}</p>
                     )}
                 </div>
 
                 <div>
-                    <Label htmlFor={`notes-${task.id}`}>Notes (optional)</Label>
+                    <Label htmlFor={`notes-${task.id}`} className="text-foreground">Notes (optional)</Label>
                     <Input
                         id={`notes-${task.id}`}
                         {...register('notes')}
-                        className="mt-1"
+                        className="mt-1 bg-input border-border text-foreground"
                         placeholder="Add any notes..."
                     />
                 </div>
@@ -212,7 +212,7 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
                     type="submit"
                     size="sm"
                     disabled={createMutation.isPending || updateMutation.isPending}
-                    className="flex items-center space-x-1"
+                    className="flex items-center space-x-1 dashboard-card-purple hover:opacity-90 transition-opacity"
                 >
                     <Clock className="h-3 w-3" />
                     <span>
@@ -229,6 +229,7 @@ export function TimesheetEntryForm({ task }: TimesheetEntryFormProps) {
                             setIsEditing(false);
                             reset();
                         }}
+                        className="border-border hover:bg-muted text-foreground"
                     >
                         Cancel
                     </Button>

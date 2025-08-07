@@ -33,31 +33,35 @@ export function TimesheetReview() {
     const submittedEntries = timesheetEntries.filter(entry => entry.submitted);
 
     return (
-        <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-900">Submitted Timesheets</h2>
+        <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-foreground">Submitted Timesheets</h2>
 
-            <div className="grid gap-4">
+            <div className="grid gap-6">
                 {submittedEntries.map((entry) => (
-                    <Card key={entry.id}>
+                    <Card key={entry.id} className="bg-card border-border hover:bg-card/80 transition-colors">
                         <CardHeader className="pb-3">
                             <div className="flex items-start justify-between">
                                 <div className="space-y-1">
-                                    <CardTitle className="text-lg flex items-center space-x-2">
-                                        <FileText className="h-5 w-5" />
+                                    <CardTitle className="text-lg flex items-center space-x-2 text-foreground">
+                                        <div className="p-1.5 rounded-lg dashboard-card-purple">
+                                            <FileText className="h-4 w-4 text-white" />
+                                        </div>
                                         <span>{getTaskDescription(entry.taskId)}</span>
                                     </CardTitle>
-                                    <p className="text-sm text-gray-600">
+                                    <p className="text-sm text-muted-foreground">
                                         Employee: {getUserName(entry.userId)}
                                     </p>
-                                    <p className="text-sm text-gray-500">
+                                    <p className="text-sm text-muted-foreground">
                                         Date: {formatDate(entry.date)}
                                     </p>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-lg font-semibold text-blue-600">
-                                        {entry.actualHours}h
-                                    </p>
-                                    <p className="text-xs text-gray-500">
+                                    <div className="px-3 py-1 rounded-lg dashboard-card-cyan text-white">
+                                        <p className="text-lg font-semibold">
+                                            {entry.actualHours}h
+                                        </p>
+                                    </div>
+                                    <p className="text-xs text-muted-foreground mt-1">
                                         Submitted: {entry.submittedAt ? formatDateTime(entry.submittedAt) : 'N/A'}
                                     </p>
                                 </div>
@@ -65,8 +69,8 @@ export function TimesheetReview() {
                         </CardHeader>
                         {entry.notes && (
                             <CardContent>
-                                <div className="bg-gray-50 rounded-md p-3">
-                                    <p className="text-sm text-gray-700">
+                                <div className="bg-muted rounded-md p-3">
+                                    <p className="text-sm text-foreground">
                                         <span className="font-medium">Notes:</span> {entry.notes}
                                     </p>
                                 </div>
@@ -76,10 +80,12 @@ export function TimesheetReview() {
                 ))}
 
                 {submittedEntries.length === 0 && (
-                    <Card>
+                    <Card className="bg-card border-border">
                         <CardContent className="text-center py-8">
-                            <Clock className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                            <p className="text-gray-500">No submitted timesheets yet.</p>
+                            <div className="p-3 rounded-lg dashboard-card-purple mx-auto w-fit mb-4">
+                                <Clock className="h-12 w-12 text-white" />
+                            </div>
+                            <p className="text-muted-foreground">No submitted timesheets yet.</p>
                         </CardContent>
                     </Card>
                 )}

@@ -10,23 +10,25 @@ export function Header() {
     if (!user) return null;
 
     return (
-        <header className="border-b bg-white">
-            <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                    <Clock className="h-6 w-6 text-blue-600" />
-                    <h1 className="text-xl font-bold text-gray-900">Timesheet Manager</h1>
+        <header className="border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
+            <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                    <div className="p-2 rounded-lg dashboard-card-blue">
+                        <Clock className="h-6 w-6 text-white" />
+                    </div>
+                    <h1 className="text-xl font-bold text-foreground">Timesheet Manager</h1>
                 </div>
 
                 <div className="flex items-center space-x-4">
                     <div className="text-sm">
-                        <p className="font-medium text-gray-900">{user.name}</p>
-                        <p className="text-gray-500 capitalize">{user.role}</p>
+                        <p className="font-medium text-foreground">{user.name}</p>
+                        <p className="text-muted-foreground capitalize">{user.role}</p>
                     </div>
                     <Button
                         variant="outline"
                         size="sm"
                         onClick={logout}
-                        className="flex items-center space-x-2"
+                        className="flex items-center space-x-2 border-border hover:bg-muted"
                     >
                         <LogOut className="h-4 w-4" />
                         <span>Logout</span>

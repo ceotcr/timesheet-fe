@@ -94,63 +94,63 @@ export function CreateTaskForm() {
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-                <Button className="flex items-center space-x-2">
+                <Button className="flex items-center space-x-2 dashboard-card-orange hover:opacity-90 transition-opacity">
                     <Plus className="h-4 w-4" />
                     <span>Create Task</span>
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-[425px] glass-effect border-border">
                 <DialogHeader>
-                    <DialogTitle>Create New Task</DialogTitle>
+                    <DialogTitle className="text-foreground">Create New Task</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
-                        <Label htmlFor="description">Task Description</Label>
+                        <Label htmlFor="description" className="text-foreground">Task Description</Label>
                         <Input
                             id="description"
                             {...register('description')}
                             placeholder="e.g., Fix Bug A in authentication module"
-                            className="mt-1"
+                            className="mt-1 bg-input border-border text-foreground"
                         />
                         {errors.description && (
-                            <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>
+                            <p className="mt-1 text-sm text-destructive">{errors.description.message}</p>
                         )}
                     </div>
 
                     <div>
-                        <Label htmlFor="estimatedHours">Estimated Hours</Label>
+                        <Label htmlFor="estimatedHours" className="text-foreground">Estimated Hours</Label>
                         <Input
                             id="estimatedHours"
                             type="number"
                             step="0.1"
                             min="0.1"
                             {...register('estimatedHours', { valueAsNumber: true })}
-                            className="mt-1"
+                            className="mt-1 bg-input border-border text-foreground"
                         />
                         {errors.estimatedHours && (
-                            <p className="mt-1 text-sm text-red-600">{errors.estimatedHours.message}</p>
+                            <p className="mt-1 text-sm text-destructive">{errors.estimatedHours.message}</p>
                         )}
                     </div>
 
                     <div>
-                        <Label htmlFor="date">Date</Label>
+                        <Label htmlFor="date" className="text-foreground">Date</Label>
                         <Input
                             id="date"
                             type="date"
                             {...register('date')}
-                            className="mt-1"
+                            className="mt-1 bg-input border-border text-foreground"
                         />
                         {errors.date && (
-                            <p className="mt-1 text-sm text-red-600">{errors.date.message}</p>
+                            <p className="mt-1 text-sm text-destructive">{errors.date.message}</p>
                         )}
                     </div>
 
                     <div>
-                        <Label htmlFor="assigneeId">Assign to</Label>
+                        <Label htmlFor="assigneeId" className="text-foreground">Assign to</Label>
                         <select
                             id="assigneeId"
                             {...register('assigneeId')}
-                            className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                            className="mt-1 flex h-10 w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         >
                             <option value="">Select an associate...</option>
                             {associates.map((associate) => (
@@ -160,7 +160,7 @@ export function CreateTaskForm() {
                             ))}
                         </select>
                         {errors.assigneeId && (
-                            <p className="mt-1 text-sm text-red-600">{errors.assigneeId.message}</p>
+                            <p className="mt-1 text-sm text-destructive">{errors.assigneeId.message}</p>
                         )}
                     </div>
 
@@ -168,7 +168,7 @@ export function CreateTaskForm() {
                         <Button
                             type="submit"
                             disabled={mutation.isPending}
-                            className="flex-1"
+                            className="flex-1 dashboard-card-blue hover:opacity-90 transition-opacity"
                         >
                             {mutation.isPending ? 'Creating...' : 'Create Task'}
                         </Button>
@@ -176,6 +176,7 @@ export function CreateTaskForm() {
                             type="button"
                             variant="outline"
                             onClick={() => setIsOpen(false)}
+                            className="border-border hover:bg-muted text-foreground"
                         >
                             Cancel
                         </Button>

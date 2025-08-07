@@ -46,15 +46,15 @@ export function TaskOverview() {
     };
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">Task Overview</h2>
+                <h2 className="text-2xl font-bold text-foreground">Task Overview</h2>
                 <Button
                     variant="outline"
                     size="sm"
                     onClick={handleRefresh}
                     disabled={isLoading}
-                    className="flex items-center space-x-2"
+                    className="flex items-center space-x-2 border-border hover:bg-muted"
                 >
                     <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
                     <span>Refresh</span>
@@ -62,48 +62,54 @@ export function TaskOverview() {
             </div>
 
             {isLoading && (
-                <Card>
+                <Card className="bg-card border-border">
                     <CardContent className="text-center py-8">
-                        <Clock className="h-12 w-12 text-gray-400 mx-auto mb-4 animate-spin" />
-                        <p className="text-gray-500">Loading tasks...</p>
+                        <Clock className="h-12 w-12 text-muted-foreground mx-auto mb-4 animate-spin" />
+                        <p className="text-muted-foreground">Loading tasks...</p>
                     </CardContent>
                 </Card>
             )}
 
             {error && (
-                <Card>
+                <Card className="bg-card border-border">
                     <CardContent className="text-center py-8">
-                        <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-                        <p className="text-red-500">Error loading tasks. Please try again.</p>
+                        <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
+                        <p className="text-destructive">Error loading tasks. Please try again.</p>
                     </CardContent>
                 </Card>
             )}
 
-            <div className="grid gap-4">{!isLoading && !error && tasks.map((task) => {
+            <div className="grid gap-6">{!isLoading && !error && tasks.map((task) => {
                 const progress = getTaskProgress(task.id);
                 const isOverTime = progress.actualHours > task.estimatedHours;
                 const isCompleted = progress.submitted;
 
                 return (
-                    <Card key={task.id}>
+                    <Card key={task.id} className="bg-card border-border hover:bg-card/80 transition-colors">
                         <CardHeader className="pb-3">
                             <div className="flex items-start justify-between">
                                 <div className="space-y-1">
-                                    <CardTitle className="text-lg">{task.description}</CardTitle>
-                                    <p className="text-sm text-gray-600">
+                                    <CardTitle className="text-lg text-foreground">{task.description}</CardTitle>
+                                    <p className="text-sm text-muted-foreground">
                                         Assigned to: {getUserName(task.assigneeId)}
                                     </p>
-                                    <p className="text-sm text-gray-500">
+                                    <p className="text-sm text-muted-foreground">
                                         Date: {formatDate(task.date)}
                                     </p>
                                 </div>
                                 <div className="flex items-center space-x-2">
                                     {isCompleted ? (
-                                        <CheckCircle className="h-5 w-5 text-green-600" />
+                                        <div className="p-1.5 rounded-lg dashboard-card-green">
+                                            <CheckCircle className="h-4 w-4 text-white" />
+                                        </div>
                                     ) : isOverTime ? (
-                                        <AlertCircle className="h-5 w-5 text-red-600" />
+                                        <div className="p-1.5 rounded-lg bg-destructive">
+                                            <AlertCircle className="h-4 w-4 text-white" />
+                                        </div>
                                     ) : (
-                                        <Clock className="h-5 w-5 text-blue-600" />
+                                        <div className="p-1.5 rounded-lg dashboard-card-blue">
+                                            <Clock className="h-4 w-4 text-white" />
+                                        </div>
                                     )}
                                 </div>
                             </div>
@@ -111,23 +117,23 @@ export function TaskOverview() {
                         <CardContent>
                             <div className="flex items-center justify-between text-sm">
                                 <div className="flex space-x-4">
-                                    <span>
+                                    <span className="text-foreground">
                                         <span className="font-medium">Estimated:</span> {task.estimatedHours}h
                                     </span>
-                                    <span>
+                                    <span className="text-foreground">
                                         <span className="font-medium">Actual:</span>{' '}
-                                        <span className={isOverTime ? 'text-red-600 font-medium' : ''}>
+                                        <span className={isOverTime ? 'text-destructive font-medium' : ''}>
                                             {progress.actualHours}h
                                         </span>
                                     </span>
                                 </div>
                                 <div className="flex items-center space-x-2">
                                     <span
-                                        className={`px-2 py-1 rounded-full text-xs font-medium ${isCompleted
-                                            ? 'bg-green-100 text-green-800'
+                                        className={`px-3 py-1 rounded-full text-xs font-medium ${isCompleted
+                                            ? 'dashboard-card-green text-white'
                                             : isOverTime
-                                                ? 'bg-red-100 text-red-800'
-                                                : 'bg-blue-100 text-blue-800'
+                                                ? 'bg-destructive text-white'
+                                                : 'dashboard-card-blue text-white'
                                             }`}
                                     >
                                         {isCompleted
@@ -144,10 +150,12 @@ export function TaskOverview() {
             })}
 
                 {tasks.length === 0 && (
-                    <Card>
+                    <Card className="bg-card border-border">
                         <CardContent className="text-center py-8">
-                            <Clock className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                            <p className="text-gray-500">No tasks created yet.</p>
+                            <div className="p-3 rounded-lg dashboard-card-cyan mx-auto w-fit mb-4">
+                                <Clock className="h-12 w-12 text-white" />
+                            </div>
+                            <p className="text-muted-foreground">No tasks created yet.</p>
                         </CardContent>
                     </Card>
                 )}

@@ -1,26 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #ffffff;
-  --color-foreground: #0a0a0a;
-  --color-card: #ffffff;
-  --color-card-foreground: #0a0a0a;
-  --color-popover: #ffffff;
-  --color-popover-foreground: #0a0a0a;
-  --color-primary: #0f172a;
-  --color-primary-foreground: #f8fafc;
-  --color-secondary: #f1f5f9;
-  --color-secondary-foreground: #0f172a;
-  --color-muted: #f1f5f9;
-  --color-muted-foreground: #64748b;
-  --color-accent: #f1f5f9;
-  --color-accent-foreground: #0f172a;
+  /* Dark theme inspired by OfficeSphere dashboard */
+  --color-background: #0f1629;
+  --color-foreground: #f8fafc;
+  --color-card: #1a1f37;
+  --color-card-foreground: #f8fafc;
+  --color-popover: #1a1f37;
+  --color-popover-foreground: #f8fafc;
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #1e293b;
+  --color-secondary-foreground: #e2e8f0;
+  --color-muted: #1e293b;
+  --color-muted-foreground: #94a3b8;
+  --color-accent: #f97316;
+  --color-accent-foreground: #ffffff;
   --color-destructive: #ef4444;
-  --color-destructive-foreground: #fef2f2;
-  --color-border: #e2e8f0;
-  --color-input: #e2e8f0;
-  --color-ring: #0f172a;
-  --radius: 0.5rem;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #334155;
+  --color-input: #1e293b;
+  --color-ring: #3b82f6;
+  --radius: 0.75rem;
+  
+  /* Custom dashboard colors */
+  --color-blue: #3b82f6;
+  --color-purple: #8b5cf6;
+  --color-cyan: #06b6d4;
+  --color-green: #10b981;
+  --color-orange: #f97316;
+  --color-sidebar: #0f172a;
+  --color-nav: #1a1f37;
 }
 
 @layer base {
@@ -74,6 +84,34 @@
   
   .slide-out-to-top-48 {
     animation: slide-out-to-top 0.2s ease-in;
+  }
+
+  /* Dashboard card utilities */
+  .dashboard-card-blue {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+  }
+  
+  .dashboard-card-purple {
+    background: linear-gradient(135deg, #a855f7, #8b5cf6);
+  }
+  
+  .dashboard-card-cyan {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+  }
+  
+  .dashboard-card-green {
+    background: linear-gradient(135deg, #10b981, #059669);
+  }
+  
+  .dashboard-card-orange {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+  }
+
+  /* Glass effect for modals */
+  .glass-effect {
+    backdrop-filter: blur(16px);
+    background: rgba(26, 31, 55, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 
