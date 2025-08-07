@@ -59,7 +59,7 @@ A modern web-based Timesheet Management System built with Next.js 14+, React, Ty
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd timesheet
+   cd timesheet-fe
    ```
 
 2. **Install dependencies**
@@ -123,99 +123,8 @@ The application comes with pre-configured demo accounts:
    - Submitted timesheets become read-only
    - Track submission status
 
-## Project Structure
-
-```
-src/
-├── app/                    # Next.js App Router
-│   ├── globals.css        # Global styles
-│   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Main page
-├── components/            # React components
-│   ├── ui/               # Reusable UI components
-│   ├── auth/             # Authentication components
-│   ├── dashboard/        # Dashboard components
-│   ├── manager/          # Manager-specific components
-│   ├── associate/        # Associate-specific components
-│   └── layout/           # Layout components
-├── lib/                   # Utility libraries
-│   ├── api.ts            # Mock API functions
-│   ├── utils.ts          # Utility functions
-│   └── validations.ts    # Zod schemas
-├── store/                 # Zustand stores
-│   └── auth.ts           # Authentication store
-└── types/                 # TypeScript types
-    └── index.ts          # Type definitions
-```
-
-## Key Features in Detail
-
-### Modern React Patterns
-- **Client Components**: Uses 'use client' directive for interactive components
-- **Server Components**: Leverages Next.js 14+ App Router for optimal performance
-- **Custom Hooks**: Encapsulates logic in reusable hooks
-- **TypeScript Integration**: Full type safety across the application
-
-### State Management
-- **Zustand**: Minimal boilerplate for global state
-- **TanStack Query**: Intelligent caching and synchronization
-- **Form State**: React Hook Form for complex form handling
-
-### UI/UX Excellence
-- **Responsive Design**: Works on desktop and mobile
-- **Accessibility**: Built with Radix UI for screen reader support
-- **Loading States**: Proper loading indicators and error handling
-- **Real-time Updates**: Optimistic updates and cache invalidation
-
 ### Data Flow
 1. **Mock API**: In-memory data simulation with realistic delays
 2. **Query Caching**: Automatic background refetching and cache management
 3. **Optimistic Updates**: Immediate UI updates with rollback on error
 4. **Type Safety**: End-to-end TypeScript for reliable data flow
-
-## Development Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-
-## Architecture Decisions
-
-### Why These Tools?
-
-- **Next.js 14+**: Latest React features with optimal performance
-- **Zustand**: Simpler than Redux, more powerful than Context
-- **TanStack Query**: Best-in-class server state management
-- **React Hook Form**: Performance-optimized form handling
-- **Zod**: Runtime type validation and schema definition
-- **Tailwind CSS**: Rapid UI development with consistent design
-
-### Mock Data Approach
-The application uses in-memory mock data to focus on frontend implementation:
-- Simulates real API delays
-- Provides realistic data relationships
-- Easy to replace with real backend integration
-
-## Future Enhancements
-
-- [ ] Real backend API integration
-- [ ] Advanced reporting and analytics
-- [ ] Bulk task operations
-- [ ] Time tracking with start/stop timers
-- [ ] Email notifications
-- [ ] File attachments for tasks
-- [ ] Advanced filtering and search
-- [ ] Export functionality (PDF, Excel)
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## License
-
-This project is for demonstration purposes. Feel free to use it as a reference for your own projects.
