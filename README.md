@@ -2,6 +2,10 @@
 
 A modern web-based Timesheet Management System built with Next.js 14+, React, TypeScript, and modern tools for efficient tracking of work hours by employees and oversight by managers.
 
+## Demo:
+  [timesheet-demo.webm](https://github.com/user-attachments/assets/620131b3-b607-4c95-b006-c093230064a4)
+
+
 ## Features
 
 ### 🔐 Authentication & Authorization
